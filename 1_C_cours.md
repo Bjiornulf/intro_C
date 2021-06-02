@@ -49,6 +49,20 @@ Code C  ---- cc ---->	Assembler   ----- AS ----->	Code machine
 Ce qui est le plus difficile c'est de choisir dans quel niveau de memoire mettre les differentes informations, pour pouvoir optimiser la vitesse
 A ce niveau, meme les deplacement physiques de l'information (les quelques millimettres) peuvent faire la difference.
 
+### Decomposer en plusieurs fichiers
+
+un seul fichier avec `int main() {...}`. Les autres fichiers existent sous deux formes : `module1.c` et `module1.h`
+>`module1.h` contient les declarations des fonctions de `module.c`
+>
+```C
+#ifndef MODULE_1_H
+#define MODULE_1_H
+// declaration des fonctions et structures
+
+#endif
+```
+
+
 ## Donnes de base du C
 
 `int` Entier avec signe code sur 32 bits (au moins)
@@ -61,3 +75,31 @@ Tableaux:
 > `int a[10]`
 
 >`a` est un tableau de taille 10. De base, C ne nettoie pas le tableau. Attention, C ne verifie pas si nous sommes toujours dans le tableau. En sortant des limites, nous ne pouvons plus savoir ce qu'il va se passer
+
+## Assert
+
+```C
+#include <assert.h>
+
+asser(expression);
+```
+Permet en mode DEBUG d'avoir une erreur (gcc ... -g)
+
+## Best practices
+
+Toujours mettre des accolades : `if (...) {...}` car si l'on n'en met pas, et que nous commentons l'expression, on peut se retrouver
+a changer le comportement du programme apres.
+
+## Bitwise operations
+
+`~` inversion des bites 0 -> 1 et 1 -> 0
+
+`^` XOR
+
+`&` et binaire sur la representation de l'entier
+
+`|` ou binaire sur la representation de l'entier
+
+`<<` decalage a gauche, avec insertion de 0 a droite
+
+`>>` decalage a droite, avec insertion de 0 a gauche
