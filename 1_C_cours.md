@@ -53,6 +53,7 @@ A ce niveau, meme les deplacement physiques de l'information (les quelques milli
 
 un seul fichier avec `int main() {...}`. Les autres fichiers existent sous deux formes : `module1.c` et `module1.h`
 >`module1.h` contient les declarations des fonctions de `module.c`
+>
 ```C
 #ifndef MODULE_1_H
 #define MODULE_1_H
@@ -61,22 +62,17 @@ un seul fichier avec `int main() {...}`. Les autres fichiers existent sous deux 
 #endif
 ```
 
-ceci permet d'annoncer les fonctions et structures qu'une seule fois, si le module est utilise dans plusieurs fichiers source.
-On ajoute `#include "path/to/module1.h"` dans tous les fichiers qui utilisent les fonctions de `module1.c`
-et aussi parfois a `module1.c` lui-meme.
 
 ## Donnes de base du C
 
 `int` Entier avec signe code sur 32 bits (au moins)
-
 `long` Entier avec signe code sur 64 bits (au moins)
-
 `char` Caractere (ou entier) code sur 8 bits (au moins)
 
 ## Structures de base
 
 Tableaux:
->`int a[10]`
+> `int a[10]`
 
 >`a` est un tableau de taille 10. De base, C ne nettoie pas le tableau. Attention, C ne verifie pas si nous sommes toujours dans le tableau. En sortant des limites, nous ne pouvons plus savoir ce qu'il va se passer
 
@@ -94,7 +90,7 @@ Permet en mode DEBUG d'avoir une erreur (gcc ... -g)
 Toujours mettre des accolades : `if (...) {...}` car si l'on n'en met pas, et que nous commentons l'expression, on peut se retrouver
 a changer le comportement du programme apres.
 
-## Bitwise operators
+## Bitwise operations
 
 `~` inversion des bites 0 -> 1 et 1 -> 0
 
