@@ -107,3 +107,47 @@ a changer le comportement du programme apres.
 `<<` decalage a gauche, avec insertion de 0 a droite
 
 `>>` decalage a droite, avec insertion de 0 a gauche
+
+## Organisation de la memoire
+
+Lors de l'execution d'une fonction, les variables propres a la fonction sont stockees dans la "pile" de la fonction. Elle est
+detruite lorsque la fonction termine.
+Si l'on veut stocker des plus grands objets, ou des objets de facon plus persistante, il faut les creer dans le "tas".
+>On utilise `malloc(size_in_bytes) -> void *`.
+
+Attention, on peut ecrire `char *s = "string"`, qui est valide. Cependant, on ne pourra PAS modifier cette chaine. Elle vit dans
+un espace memoir reserve aux chaines immuables.
+
+"la notion d'etiquettes en python correspond aux pointeurs en C"
+```C
+char *s = "abc";
+char *c = s;
+```
+Representation dans la memoire (pile)
+```
+s	| 720 |
+	-------
+c	| 720 |
+	-------
+	|     |
+	-------
+	|     |
+	-------
+```
+
+`malloc()` nous permet de faire de l'allocation dynamique, contrairement aux tableaux. Attention, une allocation dynamique peut echouer!
+(par exemple sur les avions, on n'a pas le droit d'utiliser `malloc`)
+
+Des erreurs de programmation peuvent etre critiques, memes dans les dommaines qui ne le semblent pas. Par exemple hier, les numeros 15
+et 17 n'etaient pas accessibles. Ceci peut cause des centaines de morts.
+
+On peut acceder a l'addresse memoire d'une valeur :
+```C
+int a = 5;
+int *p = &a;
+*p = 12;
+printf("%i\n", a);
+```
+>`12`
+
+
