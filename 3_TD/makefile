@@ -2,9 +2,10 @@
 
 all: main
 
+
 main: main.o personne.o date.o list.o
 	@echo "Linking everyting..."
-	gcc -o main main.o personne.o date.o list.o 
+	gcc main.o personne.o date.o list.o -o main
 
 list.o: list.c list.h date.h
 	@echo "Building list dependency..."
