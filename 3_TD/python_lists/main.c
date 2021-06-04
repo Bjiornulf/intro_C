@@ -13,6 +13,10 @@ int main()
 	print_list(s);
 	printf("len(list) = %i\n", len(list));
 	printf("len(s) = %i\n", len(s));
+
+	del(list, 10);
+	print_list(list);
+	printf("len(list) = %i\n", len(list));
 	free_list(s);
 	free_list(list);
 }

@@ -102,3 +102,31 @@ int *slice(int *list, int lower, int upper)
 	}
 	return new;
 }
+
+void set(int *list, int index, int value)
+{
+	if (index >= len(list)){
+		return;
+	}
+	list[index+2] = value;
+}
+
+int pop(int *list)
+{
+	if (len(list) == 0) {
+		return 0;
+	}
+	list[1]--;
+	return list[len(list)+2];
+}
+
+void del(int *list, int index)
+{
+	if (index >= len(list)){
+		return;
+	}
+	for (int i = index; i < len(list)-1;i++){
+		list[i+2] = list[i+3];
+	}
+	list[1]--;
+}

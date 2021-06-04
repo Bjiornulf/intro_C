@@ -10,5 +10,8 @@ int *insert(int *list, int element);
 int *range(int lower, int upper);
 int *slice(int *list, int lower, int upper);
 void free_list(int *list);
+void set(int *list, int index, int value);
+int pop(int *list);
+void del(int *list, int index);
 
 #endif
