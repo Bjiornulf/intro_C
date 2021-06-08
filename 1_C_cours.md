@@ -65,6 +65,39 @@ ceci permet d'annoncer les fonctions et structures qu'une seule fois, si le modu
 On ajoute `#include "path/to/module1.h"` dans tous les fichiers qui utilisent les fonctions de `module1.c`
 et aussi parfois a `module1.c` lui-meme.
 
+### Compilation separee
+
+Jusqu'ici nous avons compile tous les fichiers ensemble. Ce n'est pas possible une fois que les projets deviennent consequents
+
+#### Compilation :
+```Bash
+gcc -c triangle.c
+```
+On va avoir un fichier triangle.o dans notre repertoire
+
+#### Linking :
+a la fin, `gcc -o main main.o point.o triangle.o` va nous fournir `main`
+
+#### interet :
+Avec une compilation separee, on peut facilement modifier un fichier, et ne recompiler **QUE LUI**.
+
+Pour automatiser la compilation, on se tourne vers des `makefile`
+*(cf exemple dans 4_example_point)*.
+
+syntaxe:
+```makefile
+target: dependencies
+	recipy
+```
+
+exemple de makefile:
+```makefile
+all: main
+
+main: main.o
+	gcc -o main main.o
+```
+
 ## Donnes de base du C
 
 `int` Entier avec signe code sur 32 bits (au moins)
@@ -108,6 +141,13 @@ a changer le comportement du programme apres.
 
 `>>` decalage a droite, avec insertion de 0 a gauche
 
+## Pointeurs
+
+En C on peut recuperer les pointeurs vers les differentes variables.
+C'est une facon d'agir sur des variables qui sont declarees dans d'autres fonctions.
+
+**Attention**, toutes les variables sont donnees par valeur aux fonctions. Il en est de meme pour les pointeurs.
+
 ## Organisation de la memoire
 
 Lors de l'execution d'une fonction, les variables propres a la fonction sont stockees dans la "pile" de la fonction. Elle est
@@ -138,6 +178,13 @@ c	| 720 |
 `malloc()` nous permet de faire de l'allocation dynamique, contrairement aux tableaux. Attention, une allocation dynamique peut echouer!
 (par exemple sur les avions, on n'a pas le droit d'utiliser `malloc`)
 
+`void *realloc(void *, size_t)` permet de reallouer la memoire. Renvoie un pointeur
+vers la nouvelle addresse de debut. On peut ainsi agrandir un espace memoire. `realloc`
+copie le contenu s'il faut deplacer la section de memoire.
+
+`free(void *)` nous permet de liberer la memoire, et de la rendre au systeme (elle va
+pouvoir etre redonnee a quelqu'un d'autre).
+
 Des erreurs de programmation peuvent etre critiques, memes dans les dommaines qui ne le semblent pas. Par exemple hier, les numeros 15
 et 17 n'etaient pas accessibles. Ceci peut cause des centaines de morts.
 
@@ -149,5 +196,43 @@ int *p = &a;
 printf("%i\n", a);
 ```
 >`12`
+
+**Attention**, ne jamais retourner des pointeurs vers le tas par des fonctions.
+Cela n'a aucun sens! (l'addresse retournee va surement etre reecrite, et ne va pas
+correspondre a la meme chose).
+
+## Struct
+
+```C
+struct Point {
+	int x;
+	int y;
+};
+
+struct Point p;
+p.x = 5;
+p.y = 12;
+```
+
+```
+int a = 5;				a|  5	|
+						---------
+int b = f(a);			b|		|
+						---------
+						 |		| pour le retour de f(a)
+						---------
+						a|		| pour l'appel de f
+						---------
+```
+a la fin on depile les cases inherantes a l'appel de f.
+
+**Attention**, meme les structures sont donnees par valeur. Par exemple un fonction du type `void f(struct Point p)`
+va recevoir un nouveau point. Modifier p dans le corps de la fonction ne va pas modifier la structure fournie en parametre.
+
+```C
+(*p).x = 5;
+<==>
+p->x = 5;
+```
 
 
