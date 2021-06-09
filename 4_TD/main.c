@@ -18,6 +18,6 @@ int main()
 	}
 	map_list(&void_println_date, list);
 	free_list(&void_free_date, list);
-	// freeing a person, frees the used date.
 	free_person(todor);
+	free_date(bdate);
 }
