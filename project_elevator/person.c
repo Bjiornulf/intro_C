@@ -39,3 +39,13 @@ PersonList *reverse(PersonList *list)
 	}
 	return new;
 }
+
+void free_list(PersonList *list)
+{
+	PersonList *temp;
+	while (list != NULL){
+		temp = list->next;
+		free(list);
+		list = temp;
+	}
+}

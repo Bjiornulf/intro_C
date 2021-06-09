@@ -15,5 +15,6 @@ Person* createPerson(int src, int dest);
 PersonList* insert(Person *p, PersonList *list);
 int list_length(PersonList *list);
 PersonList *reverse(PersonList *list);
+void free_list(PersonList *list);
 
 #endif
