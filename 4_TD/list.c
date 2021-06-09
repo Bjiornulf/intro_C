@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include "list.h"
 
-List *insert(void *data, List *list)
+List *push_list(void *data, List *list)
 {
 	if (list == NULL) {
 		List *new = (List *) malloc(sizeof(List));

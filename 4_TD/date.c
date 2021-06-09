@@ -36,12 +36,22 @@ void void_print_date(void *date)
 	print_date((Date *) date);
 }
 
+void void_println_date(void *date)
+{
+	println_date((Date *) date);
+}
+
 Date *duplicate_date(Date *date)
 {
 	return create_date(date->day, date->month, date->year);
 }
 
 void print_date(Date *date)
+{
+	printf("%02d/%02d/%04d", date->day, date->month, date->year);
+}
+
+void println_date(Date *date)
 {
 	printf("%02d/%02d/%04d\n", date->day, date->month, date->year);
 }

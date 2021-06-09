@@ -11,7 +11,9 @@ Date *create_date(int day, int month, int year);
 int compare_date(Date *date1, Date *date2);
 Date *duplicate_date(Date *date);
 void print_date(Date *date);
+void println_date(Date *date);
 void void_print_date(void *date);
+void void_println_date(void *Date);
 void free_date(Date *date);
 void void_free_date(void *date);
 

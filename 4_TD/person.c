@@ -19,9 +19,9 @@ Person *create_person(char *first_name, char *last_name, Date* birth_date)
 void print_person(Person *p)
 {
 	printf("Person : \n");
-	printf("first name : %s\n", p->first_name);
-	printf("last name : %s\n", p->last_name);
-	printf("birth date : "), print_date(p->birth_date);
+	printf("\tfirst name : %s\n", p->first_name);
+	printf("\tlast name : %s\n", p->last_name);
+	printf("\tbirth date : "), println_date(p->birth_date);
 }
 
 void free_person(Person *p)
