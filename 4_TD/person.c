@@ -28,5 +28,6 @@ void free_person(Person *p)
 {
 	free(p->first_name);
 	free(p->last_name);
+	free_date(p->birth_date);
 	free(p);
 }
