@@ -52,12 +52,6 @@ PersonList *enter_elevator(Elevator *e, PersonList *waitingList)
 	PersonList *personList = NULL;
 	PersonList *temp;
 	int available_space = e->capacity - length_list(e->persons);
-	// This function reverses the order of the waiters.
-	// To avoid flicker and waste of computation power, we don't
-	// explore list if no space is available
-	if (available_space == 0) {
-		return waitingList;
-	}
 	while (waitingList != NULL && available_space > 0) {
 		available_space--;
 		temp = waitingList->next;
