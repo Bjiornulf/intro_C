@@ -43,7 +43,7 @@ PersonList *exitElevator(Elevator *e)
 			current = temp;
 		}
 	}
-	e->persons = reverse(staying);	// to avoid flicker
+	e->persons = reverse_list(staying);	// to avoid flicker
 	return personList;
 }
 
@@ -72,7 +72,7 @@ PersonList *enterElevator(Elevator *e, PersonList *waitingList)
 			waitingList = temp;
 		}
 	}
-	return personList;
+	return reverse_list(personList);
 }
 
 void stepElevator(Building *b)

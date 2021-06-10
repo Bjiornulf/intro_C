@@ -27,7 +27,7 @@ int list_length(PersonList *list)
 	return len;
 }
 
-PersonList *reverse(PersonList *list)
+PersonList *reverse_list(PersonList *list)
 {
 	PersonList *new = NULL;
 	PersonList *temp;
