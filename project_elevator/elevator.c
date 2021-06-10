@@ -24,17 +24,18 @@ Building *create_building(int nbFloor, Elevator *elevator, PersonList **waitingL
 
 PersonList *exit_elevator(Elevator *e)
 {
-	PersonList *personList = NULL;
+	PersonList *exiting= NULL;
 	PersonList *current = e->persons;
 	PersonList *staying = NULL;
 	PersonList *temp = NULL;
+	// exiting and staying are in reverse order
 	while (current != NULL) {
 		if (current->person->dest == e->currentFloor) {
 			// the person must exit.
 			// moving her from the list of the elevator to return list
 			temp = current->next;
-			current->next = personList;
-			personList = current;
+			current->next = exiting;
+			exiting = current;
 			current = temp;
 		} else {
 			temp = current->next;
@@ -44,7 +45,7 @@ PersonList *exit_elevator(Elevator *e)
 		}
 	}
 	e->persons = reverse_list(staying);	// to avoid flicker
-	return personList;
+	return exiting;
 }
 
 PersonList *enter_elevator(Elevator *e, PersonList *waitingList)
