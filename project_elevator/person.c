@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include "person.h"
 
-Person *createPerson(int src, int dest)
+Person *create_person(int src, int dest)
 {
 	Person *person = (Person *) malloc(sizeof(Person));
 	person->src = src;
@@ -19,7 +19,7 @@ PersonList *insert(Person *p, PersonList *list)
 	return head;
 }
 
-int list_length(PersonList *list)
+int length_list(PersonList *list)
 {
 	int len = 0;
 	for (;list != NULL; list = list->next)

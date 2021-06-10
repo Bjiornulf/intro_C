@@ -64,7 +64,7 @@ int main() {
 		int nbPerson = 5; // 5 persons in the waiting list
 		for(int j=0 ; j<nbPerson ; j++) {
 			int dest = rand() % (nbFloor);
-			Person *p = createPerson(currentFloor, dest);
+			Person *p = create_person(currentFloor, dest);
 			waitingLists[currentFloor] = insert(p,waitingLists[currentFloor]);
 		}
 	}
@@ -94,7 +94,7 @@ int main() {
 			}
 		}
 		// Update state machine of elevator !!!!
-		stepElevator(building);
+		step_elevator(building);
 		wclear(win); // clear display area
 		box(win, 0,0); // display border of window
 		DisplayBuilding(win, building);

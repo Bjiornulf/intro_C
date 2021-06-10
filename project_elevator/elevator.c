@@ -22,7 +22,7 @@ Building *create_building(int nbFloor, Elevator *elevator, PersonList **waitingL
 	return building;
 }
 
-PersonList *exitElevator(Elevator *e)
+PersonList *exit_elevator(Elevator *e)
 {
 	PersonList *personList = NULL;
 	PersonList *current = e->persons;
@@ -47,11 +47,11 @@ PersonList *exitElevator(Elevator *e)
 	return personList;
 }
 
-PersonList *enterElevator(Elevator *e, PersonList *waitingList)
+PersonList *enter_elevator(Elevator *e, PersonList *waitingList)
 {
 	PersonList *personList = NULL;
 	PersonList *temp;
-	int available_space = e->capacity - list_length(e->persons);
+	int available_space = e->capacity - length_list(e->persons);
 	// This function reverses the order of the waiters.
 	// To avoid flicker and waste of computation power, we don't
 	// explore list if no space is available
@@ -75,11 +75,11 @@ PersonList *enterElevator(Elevator *e, PersonList *waitingList)
 	return reverse_list(personList);
 }
 
-void stepElevator(Building *b)
+void step_elevator(Building *b)
 {
 	if (b->elevator->currentFloor == b->elevator->targetFloor) {
-		free_list(exitElevator(b->elevator));
-		(b->waitingLists)[b->elevator->currentFloor] = enterElevator(b->elevator, (b->waitingLists)[b->elevator->currentFloor]);
+		free_list(exit_elevator(b->elevator));
+		(b->waitingLists)[b->elevator->currentFloor] = enter_elevator(b->elevator, (b->waitingLists)[b->elevator->currentFloor]);
 	} else if (b->elevator->currentFloor < b->elevator->targetFloor) {
 		b->elevator->currentFloor++;
 	} else {

@@ -11,9 +11,9 @@ typedef struct _PersonList {
 	struct _PersonList *next;
 } PersonList;
 
-Person* createPerson(int src, int dest);
+Person* create_person(int src, int dest);
 PersonList* insert(Person *p, PersonList *list);
-int list_length(PersonList *list);
+int length_list(PersonList *list);
 PersonList *reverse_list(PersonList *list);
 void free_list(PersonList *list);
 
