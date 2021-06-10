@@ -58,21 +58,14 @@ PersonList *enter_elevator(Elevator *e, PersonList *waitingList)
 	if (available_space == 0) {
 		return waitingList;
 	}
-	while (waitingList != NULL) {
-		if (available_space > 0) {
-			available_space--;
-			temp = waitingList->next;
-			waitingList->next = e->persons;
-			e->persons = waitingList;
-			waitingList = temp;
-		} else {
-			temp = waitingList->next;
-			waitingList->next = personList;
-			personList = waitingList;
-			waitingList = temp;
-		}
+	while (waitingList != NULL && available_space > 0) {
+		available_space--;
+		temp = waitingList->next;
+		waitingList->next = e->persons;
+		e->persons = waitingList;
+		waitingList = temp;
 	}
-	return reverse_list(personList);
+	return waitingList;
 }
 
 void step_elevator(Building *b)
