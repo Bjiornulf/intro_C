@@ -9,6 +9,17 @@
 #define WIDTH 40
 #define PERSON_WIDTH 3
 
+/*
+	Controls :
+		- q to quit
+		- [1 ... 9] to go to the said floor
+	
+	Gameplay :
+		persons enter and exit the elevator according to the floor. You
+		control the elevator. You have to make sure they all
+		get to their desired floor
+*/
+
 void DisplayPersonList(WINDOW *win, PersonList *list, int level, int offset)
 {
 	while(list != NULL) {
@@ -33,9 +44,9 @@ void DisplayBuilding(WINDOW *win, Building *b) {
 	int offset = 1;
 
 	// display wall
-	// | |
+	// |                |
 	// |[23 24 31 30 42]| 31 32
-	// | |
+	// |                |
 	int right_wall = offset + 3 + (PERSON_WIDTH*b->elevator->capacity);
 	for(int i=0; i < b->nbFloor; ++i) {
 		int level = 3*i+1;
