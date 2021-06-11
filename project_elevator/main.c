@@ -106,6 +106,7 @@ int main() {
 	noecho(); // do not display in window the pressed keys
 	halfdelay(2);
 	WINDOW *win = newwin(HEIGHT, WIDTH, 0, 0);
+	curs_set(false);
 	
 	// Introductory screen
 	DisplayInfo(win);
