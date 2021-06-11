@@ -29,7 +29,7 @@ void DisplayInfo(WINDOW *win) {
 	mvwprintw(win, 4, 5, "- q to quit");
 	mvwprintw(win, 5, 5, "- [1 ... 9] to change floor");
 	mvwprintw(win, 6, 5, "- h to get to this screen");
-	mvwprintw(win, 15, 1, "Press any key to continue");
+	mvwprintw(win, HEIGHT-2, 1, "Press any key to continue");
 	char c = wgetch(win);
 	while ((c = wgetch(win)) == ERR) {
 		;
