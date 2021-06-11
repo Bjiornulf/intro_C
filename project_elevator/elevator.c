@@ -24,7 +24,7 @@ Building *create_building(int nbFloor, Elevator *elevator, PersonList **waitingL
 
 PersonList *exit_elevator(Elevator *e)
 {
-	PersonList *exiting= NULL;
+	PersonList *exiting = NULL;
 	PersonList *current = e->persons;
 	PersonList *staying = NULL;
 	PersonList *temp = NULL;
@@ -50,7 +50,6 @@ PersonList *exit_elevator(Elevator *e)
 
 PersonList *enter_elevator(Elevator *e, PersonList *waitingList)
 {
-	PersonList *personList = NULL;
 	PersonList *temp;
 	int available_space = e->capacity - length_list(e->persons);
 	while (waitingList != NULL && available_space > 0) {
