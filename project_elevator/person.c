@@ -45,6 +45,7 @@ void free_list(PersonList *list)
 	PersonList *temp;
 	while (list != NULL){
 		temp = list->next;
+		free(list->person);
 		free(list);
 		list = temp;
 	}
