@@ -20,6 +20,22 @@
 		get to their desired floor
 */
 
+void DisplayInfo(WINDOW *win) {
+	int title_length = 18;
+	int title_start  = (WIDTH - 2) / 2 - title_length / 2;
+	box(win, 0, 0);
+	mvwprintw(win, 1, title_start, "Elevator simulator");
+	mvwprintw(win, 3, 1, "Controls :");
+	mvwprintw(win, 4, 5, "- q to quit");
+	mvwprintw(win, 5, 5, "- [1 ... 9] to change floor");
+	mvwprintw(win, 6, 5, "- h to get to this screen");
+	mvwprintw(win, 15, 1, "Press any key to continue");
+	char c = wgetch(win);
+	while ((c = wgetch(win)) == ERR) {
+		;
+	}
+}
+
 void DisplayPersonList(WINDOW *win, PersonList *list, int level, int offset)
 {
 	while(list != NULL) {
@@ -90,6 +106,10 @@ int main() {
 	noecho(); // do not display in window the pressed keys
 	halfdelay(2);
 	WINDOW *win = newwin(HEIGHT, WIDTH, 0, 0);
+	
+	// Introductory screen
+	DisplayInfo(win);
+
 	// Animation loop
 	bool run=true;
 
@@ -98,6 +118,9 @@ int main() {
 		int input = wgetch(win);
 		if(input == 'q') {
 			run = false;
+		} else if (input == 'h') {
+			wclear(win);
+			DisplayInfo(win);
 		} else {
 			int level = input - '0';
 			if(0 <= level && level < nbFloor) {
